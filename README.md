@@ -3,12 +3,11 @@
 # Bitecount 🍪
 
 ## Basic Details
-### Team Name: [Your Team Name]
-
+### Team Name: Buggies
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Ashwin M - College Of Engineering Vadakara
+- Member 2: Ashwin M - College Of Engineering Vadakara
+- Member 3: Abhinand Suresh SL - College Of Engineering Vadakara
 
 ### Project Description
 An overly engineered AI application that analyzes a photo of a partially eaten biscuit to calculate exactly what percentage remains, how many bites are left, and judges your eating habits.
