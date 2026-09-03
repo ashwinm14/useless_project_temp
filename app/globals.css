@@ -20,8 +20,9 @@
 }
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #fafafa;
+  /* Clean standard Neumorphism base */
+  --background: #E0E5EC; 
+  --foreground: #4A5568;
 }
 
 body {
@@ -29,24 +30,59 @@ body {
   color: var(--foreground);
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+/* Neumorphism Utilities */
+.neu-flat {
+  background: #E0E5EC;
+  box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.8), 
+             -12px -12px 24px rgba(255, 255, 255, 1);
+  border-radius: 2rem;
 }
 
-.glow-button {
+.neu-pressed {
+  background: #E0E5EC;
+  box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.8),
+              inset -8px -8px 16px rgba(255, 255, 255, 1);
+  border-radius: 2rem;
+}
+
+.neu-button {
+  background: #E0E5EC;
+  box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.8), 
+             -10px -10px 20px rgba(255, 255, 255, 1);
+  border-radius: 9999px;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+  border: none;
+  color: #4A5568;
+  font-weight: 900;
 }
 
-.glow-button:hover {
+.neu-button:hover {
+  box-shadow: 14px 14px 24px rgba(163, 177, 198, 0.9), 
+             -14px -14px 24px rgba(255, 255, 255, 1);
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(255, 107, 0, 0.8);
 }
 
-.glow-button:active {
+.neu-button:active {
+  box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.8),
+              inset -6px -6px 12px rgba(255, 255, 255, 1);
   transform: translateY(2px);
-  box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+}
+
+.neu-accent {
+  background: #DD6B20;
+  box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.7), 
+             -8px -8px 16px rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+}
+
+.neu-accent:active {
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,0.3),
+              inset -4px -4px 8px rgba(255,255,255,0.3);
+}
+
+/* Custom progress bar inner track */
+.neu-track {
+  background: #E0E5EC;
+  box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.8),
+              inset -8px -8px 16px rgba(255, 255, 255, 1);
 }

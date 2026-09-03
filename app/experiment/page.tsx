@@ -43,19 +43,14 @@ export default function ExperimentPage() {
   }
 
   return (
-    <main className="min-h-screen px-5 py-8 relative overflow-hidden">
-      {/* Subtle Background Glow */}
-      <div className="absolute inset-0 z-[-1] pointer-events-none opacity-10">
-        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-orange-500 blur-[100px]" />
-      </div>
-
+    <main className="min-h-screen px-5 py-8 relative overflow-hidden transition-colors duration-500">
       <div className="max-w-4xl mx-auto z-10 relative">
         {/* Header */}
         <header className="mb-10 text-center">
-          <p className="text-sm font-black tracking-[0.4em] text-orange-500 uppercase">
+          <p className="text-sm font-black tracking-[0.4em] text-orange-600 uppercase">
             Bitecount Sequence
           </p>
-          <h1 className="mt-3 text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-400">
+          <h1 className="mt-3 text-5xl md:text-6xl font-black text-slate-700">
             Biscuit Experiment
           </h1>
         </header>
@@ -64,8 +59,8 @@ export default function ExperimentPage() {
         <div className="grid grid-cols-2 gap-4 mb-10">
           <div className={`rounded-3xl p-5 font-bold transition-all duration-500 ${
               originalImage
-                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                : "glass-panel text-orange-400 border border-orange-500/50 shadow-[0_0_20px_rgba(255,107,0,0.2)]"
+                ? "neu-pressed text-orange-600"
+                : "neu-flat text-slate-700"
             }`}
           >
             <p className="text-xs uppercase tracking-widest opacity-80">Phase 1</p>
@@ -74,10 +69,10 @@ export default function ExperimentPage() {
 
           <div className={`rounded-3xl p-5 font-bold transition-all duration-500 ${
               currentImage
-                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                ? "neu-pressed text-orange-600"
                 : originalImage
-                ? "glass-panel text-orange-400 border border-orange-500/50 shadow-[0_0_20px_rgba(255,107,0,0.2)]"
-                : "glass-panel text-neutral-500 opacity-50"
+                ? "neu-flat text-slate-700"
+                : "neu-flat text-slate-500 opacity-50"
             }`}
           >
             <p className="text-xs uppercase tracking-widest opacity-80">Phase 2</p>
@@ -87,31 +82,30 @@ export default function ExperimentPage() {
 
         {/* Instructions */}
         {!originalImage && (
-          <div className="glass-panel rounded-3xl p-8 mb-8 text-center">
+          <div className="neu-flat rounded-3xl p-8 mb-8 text-center text-slate-700">
             <div className="text-5xl animate-bounce">🍪</div>
-            <h2 className="mt-6 text-3xl font-black text-white">Target Acquired</h2>
-            <p className="mt-3 text-neutral-400 text-lg">
+            <h2 className="mt-6 text-3xl font-black">Target Acquired</h2>
+            <p className="mt-3 text-slate-500 text-lg font-bold">
               Place the whole biscuit inside the scanner frame. Ensure maximum visibility.
             </p>
           </div>
         )}
 
         {originalImage && !currentImage && (
-          <div className="bg-orange-500/10 border border-orange-500/30 rounded-3xl p-8 mb-8 text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" />
+          <div className="neu-pressed rounded-3xl p-8 mb-8 text-center relative overflow-hidden text-slate-700">
             <div className="text-5xl">😋</div>
-            <h2 className="mt-6 text-3xl font-black text-orange-400">INITIATE BITE</h2>
-            <p className="mt-3 text-neutral-300 text-lg">
+            <h2 className="mt-6 text-3xl font-black text-orange-600">INITIATE BITE</h2>
+            <p className="mt-3 text-slate-500 text-lg font-bold">
               Take exactly one bite. Return the biscuit to its original coordinates.
             </p>
           </div>
         )}
 
         {currentImage && (
-          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 mb-8 text-center">
+          <div className="neu-pressed rounded-3xl p-8 mb-8 text-center text-slate-700">
             <div className="text-5xl">✅</div>
-            <h2 className="mt-6 text-3xl font-black text-emerald-400">SCAN COMPLETE</h2>
-            <p className="mt-3 text-emerald-200/70 text-lg">
+            <h2 className="mt-6 text-3xl font-black text-orange-600">SCAN COMPLETE</h2>
+            <p className="mt-3 text-slate-500 text-lg font-bold">
               Data collected successfully. Ready for highly advanced mathematics.
             </p>
           </div>
@@ -119,8 +113,8 @@ export default function ExperimentPage() {
 
         {/* Camera */}
         {!currentImage && (
-          <div className="glass-panel p-2 rounded-[2.5rem] mb-8">
-            <div className="overflow-hidden rounded-[2rem]">
+          <div className="neu-pressed p-4 rounded-[2.5rem] mb-8">
+            <div className="overflow-hidden rounded-[1.5rem]">
               <Camera onCapture={handleCapture} />
             </div>
           </div>
@@ -128,16 +122,16 @@ export default function ExperimentPage() {
 
         {/* Captured images */}
         {originalImage && (
-          <div className="mt-8 grid md:grid-cols-2 gap-6">
-            <div className="glass-panel rounded-3xl p-5">
-              <p className="font-black text-xs tracking-widest text-neutral-400 mb-4 uppercase">Reference Scan</p>
-              <img src={originalImage} alt="Original" className="w-full rounded-2xl shadow-lg border border-white/10" />
+          <div className="mt-8 grid md:grid-cols-2 gap-8">
+            <div className="neu-flat rounded-3xl p-5">
+              <p className="font-black text-xs tracking-widest text-slate-500 mb-4 uppercase text-center">Reference Scan</p>
+              <img src={originalImage} alt="Original" className="w-full rounded-2xl" />
             </div>
 
             {currentImage && (
-              <div className="glass-panel rounded-3xl p-5">
-                <p className="font-black text-xs tracking-widest text-neutral-400 mb-4 uppercase">Damage Scan</p>
-                <img src={currentImage} alt="Bite" className="w-full rounded-2xl shadow-lg border border-white/10" />
+              <div className="neu-flat rounded-3xl p-5">
+                <p className="font-black text-xs tracking-widest text-slate-500 mb-4 uppercase text-center">Damage Scan</p>
+                <img src={currentImage} alt="Bite" className="w-full rounded-2xl" />
               </div>
             )}
           </div>
@@ -148,7 +142,7 @@ export default function ExperimentPage() {
           <button
             type="button"
             onClick={calculateResult}
-            className="mt-10 w-full py-6 bg-orange-600 text-white rounded-full font-black text-2xl uppercase tracking-widest glow-button"
+            className="mt-12 w-full py-6 neu-button neu-accent text-2xl uppercase tracking-widest"
           >
             Initialize Analysis
           </button>
@@ -159,7 +153,7 @@ export default function ExperimentPage() {
           <button
             type="button"
             onClick={resetExperiment}
-            className="mt-6 w-full py-4 text-neutral-500 font-bold hover:text-white transition uppercase tracking-widest text-sm"
+            className="mt-8 w-full py-4 text-slate-500 font-bold transition uppercase tracking-widest text-sm hover:text-slate-700"
           >
             Abort Sequence
           </button>

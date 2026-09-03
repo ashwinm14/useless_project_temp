@@ -164,82 +164,71 @@ export default function ResultPage() {
 
   if (isCalculating) {
     return (
-      <main className="min-h-screen px-5 py-12 flex flex-col items-center justify-center relative overflow-hidden">
-        {/* Subtle Background Glow */}
-        <div className="absolute inset-0 z-[-1] pointer-events-none opacity-20">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] rounded-full bg-orange-600 blur-[120px] animate-pulse-slow" />
-        </div>
-        
+      <main className="min-h-screen px-5 py-12 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-500">
         <div className="text-8xl animate-spin mb-8" style={{ animationDuration: "3s" }}>🍪</div>
-        <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200 tracking-widest uppercase">
+        <h2 className="text-3xl font-black text-slate-700 tracking-widest uppercase">
           Processing Optics
         </h2>
-        <p className="mt-4 text-neutral-400 font-mono tracking-widest text-sm animate-pulse">Running advanced algorithms...</p>
+        <p className="mt-4 text-slate-500 font-bold tracking-widest text-sm animate-pulse">Running advanced algorithms...</p>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen px-5 py-12 relative overflow-hidden">
-      {/* Subtle Background Glow */}
-      <div className="absolute inset-0 z-[-1] pointer-events-none opacity-10">
-        <div className="absolute top-[20%] left-[10%] w-[30%] h-[30%] rounded-full bg-orange-500 blur-[120px]" />
-      </div>
-
+    <main className="min-h-screen px-5 py-12 relative overflow-hidden transition-colors duration-500">
       <div className="max-w-3xl mx-auto text-center z-10 relative">
-        <p className="text-xs font-black tracking-[0.5em] text-orange-500 uppercase">
+        <p className="text-xs font-black tracking-[0.5em] text-orange-600 uppercase drop-shadow-sm">
           Analysis Complete
         </p>
 
-        <h1 className="mt-4 text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-400">
+        <h1 className="mt-4 text-5xl md:text-7xl font-black text-slate-700">
           YOU HAVE
         </h1>
 
         <div className="my-10">
-          <p className="text-[10rem] md:text-[12rem] font-black leading-none text-transparent bg-clip-text bg-gradient-to-br from-orange-300 via-orange-500 to-orange-700 drop-shadow-[0_0_30px_rgba(255,107,0,0.4)]">
+          <p className="text-[10rem] md:text-[12rem] font-black leading-none text-orange-600">
             {bitesLeft ?? "..."}
           </p>
-          <p className="mt-2 text-3xl font-black tracking-[0.3em] uppercase text-neutral-300">
+          <p className="mt-2 text-3xl font-black tracking-[0.3em] uppercase text-slate-500">
             Bites Left
           </p>
         </div>
 
         {errorMsg && (
-          <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-6 rounded-3xl mb-10 shadow-[0_0_20px_rgba(255,0,0,0.1)]">
-            <p className="font-black uppercase tracking-widest text-sm mb-2 text-red-500">Optics Error</p>
-            <p className="font-light">{errorMsg}</p>
+          <div className="neu-pressed text-red-500 p-6 rounded-3xl mb-10 border border-red-500/20">
+            <p className="font-black uppercase tracking-widest text-sm mb-2 text-red-600">Optics Error</p>
+            <p className="font-bold">{errorMsg}</p>
           </div>
         )}
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="glass-panel rounded-[2.5rem] p-8 relative overflow-hidden flex flex-col justify-center">
-            <div className="absolute -right-10 -bottom-10 text-[10rem] opacity-5">🍪</div>
-            <p className="text-neutral-400 font-bold uppercase tracking-widest text-xs">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="neu-flat rounded-[2.5rem] p-8 relative flex flex-col justify-center">
+            <p className="text-slate-500 font-black uppercase tracking-widest text-xs">
               Remaining Mass
             </p>
 
-            <p className="mt-4 text-7xl font-black text-white">
-              {remaining ?? "..."}<span className="text-4xl text-orange-500">%</span>
+            <p className="mt-4 text-7xl font-black text-slate-700">
+              {remaining ?? "..."}<span className="text-4xl text-orange-600">%</span>
             </p>
 
-            <div className="mt-8 h-3 bg-black/50 rounded-full overflow-hidden border border-white/5">
+            <div className="mt-8 h-4 neu-track rounded-full overflow-hidden p-1">
               <div
-                className="h-full bg-gradient-to-r from-orange-600 to-amber-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_#ff6b00]"
+                className="h-full bg-orange-600 rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${remaining ?? 0}%` }}
               />
             </div>
           </div>
 
-          <div className="glass-panel rounded-[2.5rem] p-8 border-orange-500/20 shadow-[0_0_20px_rgba(255,107,0,0.05)_inset]">
+          <div className="neu-pressed rounded-[2.5rem] p-8">
             <div className="text-4xl mb-4">
               {bitesLeft === "?" || bitesLeft === "Error" ? "⚠️" : "🤖"}
             </div>
 
-            <h2 className="text-xl font-black uppercase tracking-widest text-orange-400">
+            <h2 className="text-xl font-black uppercase tracking-widest text-orange-600">
               AI Profile
             </h2>
 
-            <p className="mt-4 text-neutral-300 font-light leading-relaxed text-lg">
+            <p className="mt-4 text-slate-700 font-bold leading-relaxed text-lg">
               "{personalityJoke}"
             </p>
           </div>
@@ -248,7 +237,7 @@ export default function ResultPage() {
         <button
           type="button"
           onClick={restart}
-          className="mt-12 px-12 py-6 bg-orange-600 text-white rounded-full font-black text-xl tracking-widest uppercase glow-button w-full md:w-auto"
+          className="mt-12 px-12 py-6 neu-button neu-accent text-xl tracking-widest uppercase w-full md:w-auto"
         >
           Initialize New Target
         </button>

@@ -147,36 +147,33 @@ export default function Camera({ onCapture }: CameraProps) {
   }
 
   return (
-    <div className="w-full relative group">
+    <div className="w-full relative group p-2">
       {/* Camera wrapper */}
       <div 
         ref={containerRef}
-        className="relative w-full aspect-[4/5] md:aspect-video bg-black rounded-[2rem] overflow-hidden shadow-[0_0_30px_rgba(255,107,0,0.1)] border border-white/10"
+        className="relative w-full aspect-[4/5] md:aspect-video neu-pressed overflow-hidden"
       >
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          className="w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover"
         />
 
-        {/* Decorative corner brackets */}
-        <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-orange-500/70" />
-        <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-orange-500/70" />
-        <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-orange-500/70" />
-        <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-orange-500/70" />
+        {/* Inner shadow overlay for depth */}
+        <div className="absolute inset-0 pointer-events-none rounded-[2rem] shadow-[inset_0_0_20px_rgba(0,0,0,0.2)]" />
 
         {/* Guide box */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div 
             ref={guideBoxRef}
-            className="relative w-[65%] max-w-sm aspect-[1.5] border-2 rounded-2xl border-orange-500/50 shadow-[0_0_15px_rgba(255,107,0,0.3)_inset] overflow-hidden"
+            className="relative w-[65%] max-w-sm aspect-[1.5] border-2 rounded-2xl border-white/50 shadow-sm overflow-hidden mix-blend-overlay"
           >
-            {/* Scanning Laser */}
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-orange-400 shadow-[0_0_8px_#ff6b00] animate-[float_3s_ease-in-out_infinite]" />
+            {/* Soft scanning line */}
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-white/70 shadow-sm animate-[float_3s_ease-in-out_infinite]" />
             
-            <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-xs font-mono tracking-widest whitespace-nowrap px-4 py-2 rounded-full glass-panel text-orange-400 border border-orange-500/30 uppercase">
+            <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-xs font-bold tracking-widest whitespace-nowrap px-4 py-2 rounded-full bg-white/30 backdrop-blur-sm text-black/70 uppercase">
               ALIGN TARGET
             </span>
           </div>
@@ -184,8 +181,8 @@ export default function Camera({ onCapture }: CameraProps) {
 
         {/* Camera starting */}
         {!cameraStarted && !error && (
-          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-md bg-black/40">
-            <div className="glass-panel text-orange-400 px-6 py-4 rounded-full font-mono text-sm tracking-widest animate-pulse border border-orange-500/30 uppercase">
+          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-md bg-[#e0e5ec]/60">
+            <div className="neu-flat text-slate-700 px-6 py-4 rounded-full font-bold text-sm tracking-widest uppercase">
               Initializing Optics...
             </div>
           </div>
@@ -193,10 +190,10 @@ export default function Camera({ onCapture }: CameraProps) {
 
         {/* Error */}
         {error && (
-          <div className="absolute inset-0 flex items-center justify-center p-6 backdrop-blur-lg bg-black/60">
-            <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-6 rounded-3xl text-center max-w-md">
+          <div className="absolute inset-0 flex items-center justify-center p-6 backdrop-blur-lg bg-[#e0e5ec]/80">
+            <div className="neu-pressed text-orange-600 p-6 rounded-3xl text-center max-w-md border border-orange-600/20">
               <p className="font-black text-xl mb-2 tracking-widest uppercase">Optics Failure</p>
-              <p className="text-sm font-light text-red-200">{error}</p>
+              <p className="text-sm font-bold">{error}</p>
             </div>
           </div>
         )}
@@ -205,14 +202,16 @@ export default function Camera({ onCapture }: CameraProps) {
       <canvas ref={canvasRef} className="hidden" />
 
       {/* Manual Capture button */}
-      <button
-        type="button"
-        onClick={captureImage}
-        disabled={!cameraStarted}
-        className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-10 py-5 text-white rounded-full font-black text-lg transition-all duration-300 disabled:opacity-0 disabled:pointer-events-none bg-orange-600 shadow-[0_10px_40px_rgba(255,107,0,0.4)] hover:bg-orange-500 hover:-translate-y-1 hover:shadow-[0_15px_50px_rgba(255,107,0,0.6)] active:translate-y-0 active:shadow-none uppercase tracking-widest border border-orange-400/50"
-      >
-        CAPTURE
-      </button>
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-full max-w-[200px]">
+        <button
+          type="button"
+          onClick={captureImage}
+          disabled={!cameraStarted}
+          className="w-full py-5 text-slate-700 disabled:opacity-0 disabled:pointer-events-none uppercase tracking-widest text-lg neu-button"
+        >
+          Capture
+        </button>
+      </div>
     </div>
   );
 }
