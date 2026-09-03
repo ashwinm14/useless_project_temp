@@ -33,15 +33,8 @@ export default function ExperimentPage() {
     }
 
     try {
-      localStorage.setItem(
-        "bitecount-original",
-        originalImage
-      );
-
-      localStorage.setItem(
-        "bitecount-current",
-        currentImage
-      );
+      localStorage.setItem("bitecount-original", originalImage);
+      localStorage.setItem("bitecount-current", currentImage);
     } catch (e) {
       console.warn("Could not save images to localStorage (they might be too large)", e);
     }
@@ -50,163 +43,103 @@ export default function ExperimentPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f1e8] px-5 py-8">
+    <main className="min-h-screen px-5 py-8 relative overflow-hidden">
+      {/* Subtle Background Glow */}
+      <div className="absolute inset-0 z-[-1] pointer-events-none opacity-10">
+        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-orange-500 blur-[100px]" />
+      </div>
 
-      <div className="max-w-4xl mx-auto">
-
+      <div className="max-w-4xl mx-auto z-10 relative">
         {/* Header */}
-        <header className="mb-8">
-
-          <p className="text-sm font-black tracking-[0.3em] text-orange-600">
-            BITECOUNT 🍪
+        <header className="mb-10 text-center">
+          <p className="text-sm font-black tracking-[0.4em] text-orange-500 uppercase">
+            Bitecount Sequence
           </p>
-
-          <h1 className="mt-3 text-4xl md:text-5xl font-black">
+          <h1 className="mt-3 text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-400">
             Biscuit Experiment
           </h1>
-
-          <p className="mt-3 text-neutral-600">
-            Let's perform some extremely important biscuit science.
-          </p>
-
         </header>
 
         {/* Progress */}
-        <div className="grid grid-cols-2 gap-3 mb-8">
-
-          <div
-            className={`rounded-2xl p-4 font-bold ${
+        <div className="grid grid-cols-2 gap-4 mb-10">
+          <div className={`rounded-3xl p-5 font-bold transition-all duration-500 ${
               originalImage
-                ? "bg-green-500 text-white"
-                : "bg-orange-500 text-white"
+                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                : "glass-panel text-orange-400 border border-orange-500/50 shadow-[0_0_20px_rgba(255,107,0,0.2)]"
             }`}
           >
-            <p className="text-xs opacity-80">
-              STEP 1
-            </p>
-
-            <p className="mt-1">
-              Whole Biscuit
-            </p>
+            <p className="text-xs uppercase tracking-widest opacity-80">Phase 1</p>
+            <p className="mt-1 text-lg">Whole Biscuit</p>
           </div>
 
-          <div
-            className={`rounded-2xl p-4 font-bold ${
+          <div className={`rounded-3xl p-5 font-bold transition-all duration-500 ${
               currentImage
-                ? "bg-green-500 text-white"
+                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                 : originalImage
-                ? "bg-orange-500 text-white"
-                : "bg-neutral-200 text-neutral-400"
+                ? "glass-panel text-orange-400 border border-orange-500/50 shadow-[0_0_20px_rgba(255,107,0,0.2)]"
+                : "glass-panel text-neutral-500 opacity-50"
             }`}
           >
-            <p className="text-xs opacity-80">
-              STEP 2
-            </p>
-
-            <p className="mt-1">
-              After Bite
-            </p>
+            <p className="text-xs uppercase tracking-widest opacity-80">Phase 2</p>
+            <p className="mt-1 text-lg">After Bite</p>
           </div>
-
         </div>
 
         {/* Instructions */}
         {!originalImage && (
-          <div className="bg-white rounded-3xl p-6 mb-6 shadow-sm">
-
-            <div className="text-4xl">
-              🍪
-            </div>
-
-            <h2 className="mt-4 text-2xl font-black">
-              Put the whole biscuit in the frame
-            </h2>
-
-            <p className="mt-2 text-neutral-500">
-              Place the biscuit inside the dashed box and make sure
-              the entire biscuit is visible.
+          <div className="glass-panel rounded-3xl p-8 mb-8 text-center">
+            <div className="text-5xl animate-bounce">🍪</div>
+            <h2 className="mt-6 text-3xl font-black text-white">Target Acquired</h2>
+            <p className="mt-3 text-neutral-400 text-lg">
+              Place the whole biscuit inside the scanner frame. Ensure maximum visibility.
             </p>
-
           </div>
         )}
 
         {originalImage && !currentImage && (
-          <div className="bg-orange-100 border border-orange-200 rounded-3xl p-6 mb-6">
-
-            <div className="text-4xl">
-              😋
-            </div>
-
-            <h2 className="mt-4 text-2xl font-black">
-              NOW TAKE ONE BITE
-            </h2>
-
-            <p className="mt-2 text-neutral-700">
-              Take exactly one bite, then place the biscuit back
-              in approximately the same position.
+          <div className="bg-orange-500/10 border border-orange-500/30 rounded-3xl p-8 mb-8 text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" />
+            <div className="text-5xl">😋</div>
+            <h2 className="mt-6 text-3xl font-black text-orange-400">INITIATE BITE</h2>
+            <p className="mt-3 text-neutral-300 text-lg">
+              Take exactly one bite. Return the biscuit to its original coordinates.
             </p>
-
           </div>
         )}
 
         {currentImage && (
-          <div className="bg-green-100 border border-green-300 rounded-3xl p-6 mb-6">
-
-            <div className="text-4xl">
-              🧪
-            </div>
-
-            <h2 className="mt-4 text-2xl font-black text-green-800">
-              BITE RECORDED
-            </h2>
-
-            <p className="mt-2 text-green-700">
-              We now have enough data to perform highly questionable
-              biscuit mathematics.
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 mb-8 text-center">
+            <div className="text-5xl">✅</div>
+            <h2 className="mt-6 text-3xl font-black text-emerald-400">SCAN COMPLETE</h2>
+            <p className="mt-3 text-emerald-200/70 text-lg">
+              Data collected successfully. Ready for highly advanced mathematics.
             </p>
-
           </div>
         )}
 
         {/* Camera */}
         {!currentImage && (
-          <Camera onCapture={handleCapture} />
+          <div className="glass-panel p-2 rounded-[2.5rem] mb-8">
+            <div className="overflow-hidden rounded-[2rem]">
+              <Camera onCapture={handleCapture} />
+            </div>
+          </div>
         )}
 
         {/* Captured images */}
         {originalImage && (
-          <div className="mt-8 grid md:grid-cols-2 gap-5">
-
-            <div className="bg-white rounded-3xl p-4 shadow-sm">
-
-              <p className="font-black text-sm tracking-wider mb-3">
-                ORIGINAL
-              </p>
-
-              <img
-                src={originalImage}
-                alt="Original biscuit"
-                className="w-full rounded-2xl"
-              />
-
+          <div className="mt-8 grid md:grid-cols-2 gap-6">
+            <div className="glass-panel rounded-3xl p-5">
+              <p className="font-black text-xs tracking-widest text-neutral-400 mb-4 uppercase">Reference Scan</p>
+              <img src={originalImage} alt="Original" className="w-full rounded-2xl shadow-lg border border-white/10" />
             </div>
 
             {currentImage && (
-              <div className="bg-white rounded-3xl p-4 shadow-sm">
-
-                <p className="font-black text-sm tracking-wider mb-3">
-                  AFTER BITE
-                </p>
-
-                <img
-                  src={currentImage}
-                  alt="Biscuit after bite"
-                  className="w-full rounded-2xl"
-                />
-
+              <div className="glass-panel rounded-3xl p-5">
+                <p className="font-black text-xs tracking-widest text-neutral-400 mb-4 uppercase">Damage Scan</p>
+                <img src={currentImage} alt="Bite" className="w-full rounded-2xl shadow-lg border border-white/10" />
               </div>
             )}
-
           </div>
         )}
 
@@ -215,11 +148,9 @@ export default function ExperimentPage() {
           <button
             type="button"
             onClick={calculateResult}
-            className="mt-8 w-full py-5 bg-neutral-900
-            text-white rounded-2xl font-black text-xl
-            hover:bg-orange-600 transition"
+            className="mt-10 w-full py-6 bg-orange-600 text-white rounded-full font-black text-2xl uppercase tracking-widest glow-button"
           >
-            🧠 CALCULATE MY BITES
+            Initialize Analysis
           </button>
         )}
 
@@ -228,15 +159,12 @@ export default function ExperimentPage() {
           <button
             type="button"
             onClick={resetExperiment}
-            className="mt-4 w-full py-4 text-neutral-500
-            font-bold hover:text-neutral-900 transition"
+            className="mt-6 w-full py-4 text-neutral-500 font-bold hover:text-white transition uppercase tracking-widest text-sm"
           >
-            ↻ Restart Experiment
+            Abort Sequence
           </button>
         )}
-
       </div>
-
     </main>
   );
 }

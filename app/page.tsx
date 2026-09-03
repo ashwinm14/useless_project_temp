@@ -6,47 +6,46 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="min-h-screen bg-[#f7f1e8] flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-4xl text-center">
+    <main className="min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden">
+      
+      {/* Floating Cookies Background */}
+      <div className="absolute inset-0 z-[-1] pointer-events-none opacity-20">
+        <div className="absolute top-[10%] left-[10%] text-9xl animate-float">🍪</div>
+        <div className="absolute bottom-[20%] right-[10%] text-8xl animate-float-delayed blur-sm">🍪</div>
+        <div className="absolute top-[30%] right-[20%] text-6xl animate-float blur-md">🍪</div>
+      </div>
 
-        {/* Biscuit */}
-        <div className="text-7xl md:text-8xl mb-6">
-          🍪
-        </div>
+      <div className="w-full max-w-4xl text-center z-10 glass-panel rounded-[3rem] p-12 md:p-24 relative">
 
         {/* Logo */}
-        <p className="text-sm md:text-base font-black tracking-[0.35em] text-orange-600">
-          BITECOUNT
+        <p className="text-sm md:text-lg font-black tracking-[0.5em] text-orange-500 uppercase">
+          Project Bitecount
         </p>
 
         {/* Heading */}
-        <h1 className="mt-5 text-5xl md:text-8xl font-black tracking-tight leading-[0.9]">
+        <h1 className="mt-8 text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-br from-white via-orange-100 to-orange-500">
           HOW MANY
           <br />
           BITES ARE LEFT?
         </h1>
 
         {/* Description */}
-        <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-neutral-600 leading-relaxed">
+        <p className="mt-10 max-w-2xl mx-auto text-lg md:text-2xl text-neutral-400 leading-relaxed font-light">
           Finally, technology has solved the question nobody asked.
-          Use your camera to calculate how many bites remain in your
-          biscuit.
+          Use advanced AI vision to mathematically dissect your biscuit.
         </p>
 
         {/* Button */}
         <button
           onClick={() => router.push("/experiment")}
-          className="mt-10 px-9 py-5 bg-neutral-900 text-white
-          rounded-full font-black text-lg
-          hover:bg-orange-600 hover:scale-105
-          transition-all duration-200"
+          className="mt-12 px-12 py-6 bg-orange-600 text-white rounded-full font-black text-xl md:text-2xl tracking-widest glow-button"
         >
-          START EXPERIMENT →
+          START SCAN →
         </button>
 
         {/* Footer joke */}
-        <p className="mt-10 text-sm text-neutral-400">
-          Powered by unnecessarily advanced technology.
+        <p className="mt-12 text-sm text-neutral-600 font-mono tracking-widest uppercase">
+          System Online // Gemini Vision Activated
         </p>
 
       </div>

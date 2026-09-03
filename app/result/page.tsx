@@ -164,78 +164,93 @@ export default function ResultPage() {
 
   if (isCalculating) {
     return (
-      <main className="min-h-screen bg-[#f7f1e8] px-5 py-12 flex flex-col items-center justify-center">
-        <div className="text-6xl animate-bounce mb-6">🍪</div>
-        <h2 className="text-2xl font-black text-neutral-800">Analyzing your bites...</h2>
-        <p className="mt-2 text-neutral-500">Please wait while we process the images.</p>
+      <main className="min-h-screen px-5 py-12 flex flex-col items-center justify-center relative overflow-hidden">
+        {/* Subtle Background Glow */}
+        <div className="absolute inset-0 z-[-1] pointer-events-none opacity-20">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] rounded-full bg-orange-600 blur-[120px] animate-pulse-slow" />
+        </div>
+        
+        <div className="text-8xl animate-spin mb-8" style={{ animationDuration: "3s" }}>🍪</div>
+        <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200 tracking-widest uppercase">
+          Processing Optics
+        </h2>
+        <p className="mt-4 text-neutral-400 font-mono tracking-widest text-sm animate-pulse">Running advanced algorithms...</p>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f1e8] px-5 py-12">
-      <div className="max-w-3xl mx-auto text-center">
-        <p className="text-sm font-black tracking-[0.3em] text-orange-600">
-          BITECOUNT RESULTS
+    <main className="min-h-screen px-5 py-12 relative overflow-hidden">
+      {/* Subtle Background Glow */}
+      <div className="absolute inset-0 z-[-1] pointer-events-none opacity-10">
+        <div className="absolute top-[20%] left-[10%] w-[30%] h-[30%] rounded-full bg-orange-500 blur-[120px]" />
+      </div>
+
+      <div className="max-w-3xl mx-auto text-center z-10 relative">
+        <p className="text-xs font-black tracking-[0.5em] text-orange-500 uppercase">
+          Analysis Complete
         </p>
 
-        <h1 className="mt-5 text-5xl md:text-7xl font-black">
+        <h1 className="mt-4 text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-400">
           YOU HAVE
         </h1>
 
-        <div className="my-8">
-          <p className="text-9xl font-black leading-none">
+        <div className="my-10">
+          <p className="text-[10rem] md:text-[12rem] font-black leading-none text-transparent bg-clip-text bg-gradient-to-br from-orange-300 via-orange-500 to-orange-700 drop-shadow-[0_0_30px_rgba(255,107,0,0.4)]">
             {bitesLeft ?? "..."}
           </p>
-          <p className="mt-4 text-2xl font-black tracking-wider">
-            BITES LEFT
+          <p className="mt-2 text-3xl font-black tracking-[0.3em] uppercase text-neutral-300">
+            Bites Left
           </p>
         </div>
 
         {errorMsg && (
-          <div className="bg-red-100 border border-red-200 text-red-800 p-4 rounded-2xl mb-8">
-            <p className="font-bold uppercase tracking-wider text-sm mb-1">AI Error</p>
-            <p>{errorMsg}</p>
+          <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-6 rounded-3xl mb-10 shadow-[0_0_20px_rgba(255,0,0,0.1)]">
+            <p className="font-black uppercase tracking-widest text-sm mb-2 text-red-500">Optics Error</p>
+            <p className="font-light">{errorMsg}</p>
           </div>
         )}
 
-        <div className="bg-white rounded-3xl p-8 shadow-sm">
-          <p className="text-neutral-500 font-medium">
-            Estimated Biscuit Remaining
-          </p>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="glass-panel rounded-[2.5rem] p-8 relative overflow-hidden flex flex-col justify-center">
+            <div className="absolute -right-10 -bottom-10 text-[10rem] opacity-5">🍪</div>
+            <p className="text-neutral-400 font-bold uppercase tracking-widest text-xs">
+              Remaining Mass
+            </p>
 
-          <p className="mt-3 text-6xl font-black">
-            {remaining ?? "..."}%
-          </p>
+            <p className="mt-4 text-7xl font-black text-white">
+              {remaining ?? "..."}<span className="text-4xl text-orange-500">%</span>
+            </p>
 
-          <div className="mt-7 h-6 bg-neutral-200 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-orange-500 rounded-full transition-all duration-700"
-              style={{ width: `${remaining ?? 0}%` }}
-            />
-          </div>
-        </div>
-
-        <div className="mt-6 bg-neutral-900 text-white rounded-3xl p-8">
-          <div className="text-5xl">
-            {bitesLeft === "?" || bitesLeft === "Error" ? "🤔" : "🍪"}
+            <div className="mt-8 h-3 bg-black/50 rounded-full overflow-hidden border border-white/5">
+              <div
+                className="h-full bg-gradient-to-r from-orange-600 to-amber-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_#ff6b00]"
+                style={{ width: `${remaining ?? 0}%` }}
+              />
+            </div>
           </div>
 
-          <h2 className="mt-5 text-2xl font-black">
-            BITE PERSONALITY
-          </h2>
+          <div className="glass-panel rounded-[2.5rem] p-8 border-orange-500/20 shadow-[0_0_20px_rgba(255,107,0,0.05)_inset]">
+            <div className="text-4xl mb-4">
+              {bitesLeft === "?" || bitesLeft === "Error" ? "⚠️" : "🤖"}
+            </div>
 
-          <p className="mt-4 text-neutral-300 leading-relaxed text-lg">
-            {personalityJoke}
-          </p>
+            <h2 className="text-xl font-black uppercase tracking-widest text-orange-400">
+              AI Profile
+            </h2>
+
+            <p className="mt-4 text-neutral-300 font-light leading-relaxed text-lg">
+              "{personalityJoke}"
+            </p>
+          </div>
         </div>
 
         <button
           type="button"
           onClick={restart}
-          className="mt-8 px-8 py-4 bg-orange-500 text-white rounded-full font-black hover:bg-orange-600 transition shadow-lg shadow-orange-500/30"
+          className="mt-12 px-12 py-6 bg-orange-600 text-white rounded-full font-black text-xl tracking-widest uppercase glow-button w-full md:w-auto"
         >
-          🍪 TRY AGAIN
+          Initialize New Target
         </button>
       </div>
     </main>

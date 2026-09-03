@@ -147,52 +147,56 @@ export default function Camera({ onCapture }: CameraProps) {
   }
 
   return (
-    <div className="w-full">
-      {/* Camera */}
+    <div className="w-full relative group">
+      {/* Camera wrapper */}
       <div 
         ref={containerRef}
-        className="relative w-full aspect-[4/5] md:aspect-video bg-black rounded-3xl overflow-hidden shadow-xl border-4 border-transparent"
+        className="relative w-full aspect-[4/5] md:aspect-video bg-black rounded-[2rem] overflow-hidden shadow-[0_0_30px_rgba(255,107,0,0.1)] border border-white/10"
       >
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-80"
         />
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-black/20" />
-        </div>
+        {/* Decorative corner brackets */}
+        <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-orange-500/70" />
+        <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-orange-500/70" />
+        <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-orange-500/70" />
+        <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-orange-500/70" />
 
         {/* Guide box */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-300">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div 
             ref={guideBoxRef}
-            className="relative w-[70%] max-w-md aspect-[1.6] border-4 rounded-3xl border-dashed border-white"
+            className="relative w-[65%] max-w-sm aspect-[1.5] border-2 rounded-2xl border-orange-500/50 shadow-[0_0_15px_rgba(255,107,0,0.3)_inset] overflow-hidden"
           >
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm font-bold whitespace-nowrap px-3 py-1 rounded-full bg-black/50 text-white">
-              PLACE BISCUIT HERE
+            {/* Scanning Laser */}
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-orange-400 shadow-[0_0_8px_#ff6b00] animate-[float_3s_ease-in-out_infinite]" />
+            
+            <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-xs font-mono tracking-widest whitespace-nowrap px-4 py-2 rounded-full glass-panel text-orange-400 border border-orange-500/30 uppercase">
+              ALIGN TARGET
             </span>
           </div>
         </div>
 
         {/* Camera starting */}
         {!cameraStarted && !error && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-black/70 text-white px-5 py-3 rounded-full animate-pulse">
-              Starting camera...
+          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-md bg-black/40">
+            <div className="glass-panel text-orange-400 px-6 py-4 rounded-full font-mono text-sm tracking-widest animate-pulse border border-orange-500/30 uppercase">
+              Initializing Optics...
             </div>
           </div>
         )}
 
         {/* Error */}
         {error && (
-          <div className="absolute inset-0 flex items-center justify-center p-6">
-            <div className="bg-red-500 text-white p-5 rounded-2xl text-center max-w-md">
-              <p className="font-bold">Camera Error</p>
-              <p className="text-sm mt-2">{error}</p>
+          <div className="absolute inset-0 flex items-center justify-center p-6 backdrop-blur-lg bg-black/60">
+            <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-6 rounded-3xl text-center max-w-md">
+              <p className="font-black text-xl mb-2 tracking-widest uppercase">Optics Failure</p>
+              <p className="text-sm font-light text-red-200">{error}</p>
             </div>
           </div>
         )}
@@ -205,9 +209,9 @@ export default function Camera({ onCapture }: CameraProps) {
         type="button"
         onClick={captureImage}
         disabled={!cameraStarted}
-        className="mt-6 w-full py-5 text-white rounded-2xl font-black text-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed bg-orange-500 hover:bg-orange-600"
+        className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-10 py-5 text-white rounded-full font-black text-lg transition-all duration-300 disabled:opacity-0 disabled:pointer-events-none bg-orange-600 shadow-[0_10px_40px_rgba(255,107,0,0.4)] hover:bg-orange-500 hover:-translate-y-1 hover:shadow-[0_15px_50px_rgba(255,107,0,0.6)] active:translate-y-0 active:shadow-none uppercase tracking-widest border border-orange-400/50"
       >
-        📸 SCAN BISCUIT
+        CAPTURE
       </button>
     </div>
   );
