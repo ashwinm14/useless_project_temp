@@ -55,13 +55,6 @@ For Software:
 # Architecture Diagram
 The architecture relies on Next.js Server Actions calling the Gemini Vision API for analysis, with an instant failover to a client-side HTML5 Canvas pixel-comparison algorithm if the API rate-limits.
 
-### Project Demo
-# Video
-*(Add your demo video link here)*
-
-# Additional Demos
-[Add any extra demo materials/links]
-
 
 ## Team Contributions
 - Abhinand Suresh SL: Frontend & Camera Integration
