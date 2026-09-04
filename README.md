@@ -39,10 +39,33 @@ npm install
 npm run dev
 ```
 
+### Project Documentation
+For Software:
+
+# Screenshots
+![Landing Page](./public/screenshot-home.png)
+*The Neumorphic landing page inviting the user to start the scan.*
+
+![Experiment Interface](./public/screenshot-experiment.png)
+*The scanning interface where users align the biscuit and take reference photos.*
+
+![Analysis Results](./public/screenshot-result.png)
+*The final analysis dashboard showing the remaining percentage, bite count, and a snarky AI joke.*
+
+# Architecture Diagram
+The architecture relies on Next.js Server Actions calling the Gemini Vision API for analysis, with an instant failover to a client-side HTML5 Canvas pixel-comparison algorithm if the API rate-limits.
+
+### Project Demo
+# Video
+*(Add your demo video link here)*
+
+# Additional Demos
+[Add any extra demo materials/links]
+
+
 ## Team Contributions
-- [Name 1]: Frontend & Camera Integration
-- [Name 2]: AI Prompt Engineering & Fallback Logic
-- [Name 3]: Documentation & Testing
+- Abhinand Suresh SL: Frontend & Camera Integration
+- Ashwin M: AI Prompt Engineering, Fallback Logic, Documentation & Testing
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
