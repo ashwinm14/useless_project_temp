@@ -13,7 +13,7 @@ export async function analyzeBiscuitAction(originalDataUrl: string, currentDataU
 
     // Initialize the model
     const model = genAI.getGenerativeModel({
-      model: "gemini-3.8-flash",
+      model: "gemini-3.6-flash",
       generationConfig: {
         responseMimeType: "application/json",
       },
@@ -56,9 +56,9 @@ Respond ONLY with a valid JSON object strictly matching this schema, with no mar
       originalImagePart,
       currentImagePart,
     ]);
-    
+
     const responseText = result.response.text();
-    
+
     // Parse the JSON (the model is configured to return JSON)
     const jsonResponse = JSON.parse(responseText);
 
